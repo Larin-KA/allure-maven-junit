@@ -11,10 +11,12 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
 
-public class SimpleTest {
+public class FirefoxTestSuite {
     @Rule
     public TextReport report = new TextReport();
 
@@ -22,6 +24,7 @@ public class SimpleTest {
     public void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         Configuration.startMaximized = true;
+        Configuration.browser = "firefox";
     }
     @After
     public void shutDown() {
@@ -31,6 +34,11 @@ public class SimpleTest {
     public void visibilityOfSearchResult() {
         new YandexSearchPage().searchFor();
         $(".main__center").shouldBe(visible);
+    }
+    @Test
+    public void firstLinkInSearchResult() {
+        new YandexSearchPage().searchFor();
+        $(".serp-item").shouldHave(text("my.propellerads.com"));
     }
     @Test
     public void wordInSearchResult() {
@@ -48,15 +56,23 @@ public class SimpleTest {
         $("#search-result-aside").shouldBe(visible);
     }
     @Test
-    public void visibilityOfIconInSearchResults() {
+    public void textInSearchResultAside() {
         new YandexSearchPage().searchFor();
-        $(".thumb__handle").shouldBe(visible);
+        $("#search-result-aside").shouldHave(text("Нашлось 5 тыс. результатов"));
     }
     @Test
-    public void firstLinkInSearchResult() {
+    public void visibilityOfVKIconInSearchResults() {
         new YandexSearchPage().searchFor();
-        $(".serp-item").shouldHave(text("my.propellerads.com"));
+        $(By.xpath("//*[@aria-label='Изображение с сайта vk.com']")).scrollIntoView(true).shouldBe(visible);
     }
-
+    @Test
+    public void visibilityOfInstIconInSearchResults() {
+        new YandexSearchPage().searchFor();
+        $(By.xpath("//*[@aria-label='Изображение с сайта www.instagram.com']")).scrollIntoView(true).shouldBe(visible);
+    }
+    @Test
+    public void visibilityOfTwitIconInSearchResults() {
+        new YandexSearchPage().searchFor();
+        $(By.xpath("//*[@aria-label='Изображение с сайта twitter.com']")).scrollIntoView(true).shouldBe(visible);
+    }
 }
-
