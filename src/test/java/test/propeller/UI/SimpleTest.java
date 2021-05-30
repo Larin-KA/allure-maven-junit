@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SimpleTest {
@@ -28,14 +28,35 @@ public class SimpleTest {
         closeWebDriver();
     }
     @Test
-    public void checkingWordInSearchResult() {
+    public void visibilityOfSearchResult() {
+        new YandexSearchPage().searchFor();
+        $(".main__center").shouldBe(visible);
+    }
+    @Test
+    public void wordInSearchResult() {
         new YandexSearchPage().searchFor();
         $("#search-result").shouldHave(text("propellerads"));
     }
     @Test
-    public void checkingNumberOfResults() {
+    public void numberOfResults() {
         new YandexSearchPage().searchFor();
         $$(".serp-item").shouldHave(sizeGreaterThan(5));
     }
+    @Test
+    public void visibilityOfSearchResultAside() {
+        new YandexSearchPage().searchFor();
+        $("#search-result-aside").shouldBe(visible);
+    }
+    @Test
+    public void visibilityOfIconInSearchResults() {
+        new YandexSearchPage().searchFor();
+        $(".thumb__handle").shouldBe(visible);
+    }
+    @Test
+    public void firstLinkInSearchResult() {
+        new YandexSearchPage().searchFor();
+        $(".serp-item").shouldHave(text("my.propellerads.com"));
+    }
+
 }
 
