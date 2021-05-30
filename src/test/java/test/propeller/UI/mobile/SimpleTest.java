@@ -1,4 +1,4 @@
-package test.propeller;
+package test.propeller.UI.mobile;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.junit.TextReport;
