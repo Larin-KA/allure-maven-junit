@@ -1,4 +1,4 @@
-package test.propeller.UI.mobile;
+package test.propeller.UI;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.junit.TextReport;
@@ -11,16 +11,18 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.open;
 
-public class FirefoxCheck {
+public class SimpleTest {
     @Rule
     public TextReport report = new TextReport();
 
     @Before
     public void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
-        Configuration.browser = "firefox";
+        Configuration.startMaximized = true;
     }
     @Test
     public void checkingWordInSearchResult() {
@@ -35,3 +37,4 @@ public class FirefoxCheck {
         $$(".serp-item").shouldHave(sizeGreaterThan(5));
     }
 }
+
