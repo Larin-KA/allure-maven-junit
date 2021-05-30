@@ -8,10 +8,13 @@
     <artifactId>propeller_test</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
     <properties>
         <allure.version>2.13.8</allure.version>
         <aspectj.version>1.9.6</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <name>allure.results.directory</name>
+        <value>C:\Users\Kirill\IdeaProjects\propeller_test\target\allure-results</value>
     </properties>
 
     <dependencies>
