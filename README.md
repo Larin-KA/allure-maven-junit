@@ -12,7 +12,7 @@ ________________________________________________________________________________
 + JUnit4
 + Allure 2.13.8
 __________________________________________________________________________________________________________________________________________________________________________________
-##Description
+## Description
 Project consists of test suits for Chrome, Firefox and Opera. It's run locally and also could be run in CI (e.g. Jenkins) with the following Maven commands:
 '''java
 mvn clean test -Dtest=ChromeTestSuite
