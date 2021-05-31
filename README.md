@@ -14,9 +14,9 @@ ________________________________________________________________________________
 __________________________________________________________________________________________________________________________________________________________________________________
 ## Description
 Project consists of test suits for Chrome, Firefox and Opera. It's run locally and also could be run in CI (e.g. Jenkins) with the following Maven commands:
-'''java
+```
 mvn clean test -Dtest=ChromeTestSuite
 mvn clean test -Dtest=FirefoxTestSuite
 mvn clean test -Dtest=OperaTestSuite
-'''
+```
 In local Jenkins job Allure reports was set up as post build step
