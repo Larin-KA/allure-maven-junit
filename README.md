@@ -1,7 +1,7 @@
-# PropellerAds test project: Selenide + Allure + JUnit4
-This is a test project for PropellerAds interview. The goal is to cover search results by test cases:
+# Test project: Selenide + Allure + JUnit4 + Maven
+This is a test project. The goal is to cover search results by test cases:
 + Testing website - yandex.ru
-+ Enter word "propellerads" in search query, press "Enter"
++ Enter word "selenide" in search query, press "Enter"
 + Receive search results
 + Testing the output for correct information
 __________________________________________________________________________________________________________________________________________________________________________________
