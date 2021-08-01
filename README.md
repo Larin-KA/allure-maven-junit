@@ -13,11 +13,14 @@ ________________________________________________________________________________
 + Allure 2.13.8
 __________________________________________________________________________________________________________________________________________________________________________________
 ## Description
-Project consist test suit, which can be launched in chosen browser by Maven command -Dselenide.browser=chrome for example. It's run locally and also could be run in CI (e.g. Jenkins) with the following Maven commands:
+Project contains test suite, which can be launched in chosen browser by Maven command -Dselenide.browser=chrome for example. It's run locally and also could be run in CI (e.g. Jenkins) with the following Maven commands:
 ```
 mvn clean test -Dtest=TestSuiteYandexSearch -Dselenide.browser=chrome
 mvn clean test -Dtest=TestSuiteYandexSearch -Dselenide.browser=firefox
 mvn clean test -Dtest=TestSuiteYandexSearch -Dselenide.browser=opera
 
 ```
-In local Jenkins job Allure reports was set up as post build step
+In local Jenkins job Allure reports was set up as post build step:
+```
+mvn allure:serve
+```
