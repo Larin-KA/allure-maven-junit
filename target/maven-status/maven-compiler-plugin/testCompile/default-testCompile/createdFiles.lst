@@ -1,3 +1,3 @@
-test\propeller\UI\FirefoxTestSuite.class
-test\propeller\UI\YandexSearchPage.class
-test\propeller\UI\ChromeTestSuit.class
+test\propeller\UI\ResultsPage.class
+test\propeller\UI\TestSuiteYandexSearch.class
+test\propeller\UI\SearchPage.class

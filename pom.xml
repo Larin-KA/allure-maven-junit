@@ -10,11 +10,17 @@
 
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.13.8</allure.version>
         <aspectj.version>1.9.6</aspectj.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <name>allure.results.directory</name>
-        <value>C:\Users\Kirill\IdeaProjects\propeller_test\target\allure-results</value>
+        <slf4j.version>1.7.30</slf4j.version>
+        <selenide.version>5.23.1</selenide.version>
+        <maven-archetype-plugin.version>3.2.0</maven-archetype-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
+        <!--<name>allure.results.directory</name>
+        <value>${project.basedir}/target/allure-results</value>-->
     </properties>
 
     <dependencies>
@@ -31,33 +37,12 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>5.18.1</version>
+            <version>${selenide.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.30</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>30.1-jre</version>
-        </dependency>
-        <dependency>
-            <groupId>com.browserup</groupId>
-            <artifactId>browserup-proxy</artifactId>
-            <version>2.1.2</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>pdf-test</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>xls-test</artifactId>
-            <version>1.4.3</version>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 
@@ -67,22 +52,23 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-archetype-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${maven-archetype-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <skipTests>false</skipTests>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -93,12 +79,13 @@
                             <value>io.qameta.allure.junit4.AllureJunit4</value>
                         </property>
                     </properties>
-                    <systemProperties>
+                    <!--<systemProperties>
                         <property>
                             <name>allure.results.directory</name>
+
                             <value>${project.build.directory}/allure-results</value>
                         </property>
-                    </systemProperties>
+                    </systemProperties>-->
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -109,20 +96,14 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>11.0.0</version>
-                <configuration>
-                    <webAppSourceDirectory>${project.build.directory}/site</webAppSourceDirectory>
-                    <supportedPackagings>
-                        <supportedPackaging>jar</supportedPackaging>
-                    </supportedPackagings>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
+                <version>${allure-maven.version}</version>
+                <configuration>
+                    <propertiesFilePath>${project.basedir}/src/main/resources/allure.properties</propertiesFilePath>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <reportDirectory>${project.build.directory}/allure-report/</reportDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>

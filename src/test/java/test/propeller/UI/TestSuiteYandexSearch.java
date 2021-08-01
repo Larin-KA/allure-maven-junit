@@ -11,12 +11,10 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
 
-public class FirefoxTestSuite {
+public class TestSuiteYandexSearch {
     @Rule
     public TextReport report = new TextReport();
 
@@ -24,7 +22,6 @@ public class FirefoxTestSuite {
     public void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         Configuration.startMaximized = true;
-        Configuration.browser = "firefox";
     }
     @After
     public void shutDown() {
@@ -32,47 +29,48 @@ public class FirefoxTestSuite {
     }
     @Test
     public void visibilityOfSearchResult() {
-        new YandexSearchPage().searchFor();
+        new SearchPage().searchFor("propellerads");
         $(".main__center").shouldBe(visible);
     }
     @Test
     public void firstLinkInSearchResult() {
-        new YandexSearchPage().searchFor();
-        $(".serp-item").shouldHave(text("my.propellerads.com"));
+        new SearchPage().searchFor("propellerads");
+        $$(".serp-item").shouldHave(sizeGreaterThan(5)).first().shouldHave(text("joinpropeller.com"));
     }
     @Test
     public void wordInSearchResult() {
-        new YandexSearchPage().searchFor();
+        new SearchPage().searchFor("propellerads");
         $("#search-result").shouldHave(text("propellerads"));
     }
     @Test
     public void numberOfResults() {
-        new YandexSearchPage().searchFor();
+        new SearchPage().searchFor("propellerads");
         $$(".serp-item").shouldHave(sizeGreaterThan(5));
     }
     @Test
     public void visibilityOfSearchResultAside() {
-        new YandexSearchPage().searchFor();
+        new SearchPage().searchFor("propellerads");
         $("#search-result-aside").shouldBe(visible);
     }
     @Test
     public void textInSearchResultAside() {
-        new YandexSearchPage().searchFor();
-        $("#search-result-aside").shouldHave(text("Нашлось 5 тыс. результатов"));
+        new SearchPage().searchFor("propellerads");
+        $("#search-result-aside").shouldHave(text("Нашлось 9 тыс. результатов"));
     }
     @Test
     public void visibilityOfVKIconInSearchResults() {
-        new YandexSearchPage().searchFor();
+        new SearchPage().searchFor("propellerads");
         $(By.xpath("//*[@aria-label='Изображение с сайта vk.com']")).scrollIntoView(true).shouldBe(visible);
     }
     @Test
     public void visibilityOfInstIconInSearchResults() {
-        new YandexSearchPage().searchFor();
+        new SearchPage().searchFor("propellerads");
         $(By.xpath("//*[@aria-label='Изображение с сайта www.instagram.com']")).scrollIntoView(true).shouldBe(visible);
     }
     @Test
     public void visibilityOfTwitIconInSearchResults() {
-        new YandexSearchPage().searchFor();
+        new SearchPage().searchFor("propellerads");
         $(By.xpath("//*[@aria-label='Изображение с сайта twitter.com']")).scrollIntoView(true).shouldBe(visible);
     }
 }
+
