@@ -7,7 +7,7 @@ This is a test project for PropellerAds interview. The goal is to cover search r
 __________________________________________________________________________________________________________________________________________________________________________________
 ## Used instruments 
 + Java 11
-+ Selenide 5.18.1
++ Selenide 5.23.1
 + Maven 3.8.1
 + JUnit4
 + Allure 2.13.8
