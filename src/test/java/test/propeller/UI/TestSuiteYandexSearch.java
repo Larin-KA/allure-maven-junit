@@ -29,48 +29,48 @@ public class TestSuiteYandexSearch {
     }
     @Test
     public void visibilityOfSearchResult() {
-        new SearchPage().searchFor("propellerads");
+        new SearchPage().searchFor("selenide");
         $(".main__center").shouldBe(visible);
     }
     @Test
     public void firstLinkInSearchResult() {
-        new SearchPage().searchFor("propellerads");
-        $$(".serp-item").shouldHave(sizeGreaterThan(5)).first().shouldHave(text("joinpropeller.com"));
+        new SearchPage().searchFor("selenide");
+        $$(".serp-item").shouldHave(sizeGreaterThan(5)).first().shouldHave(text("ru.selenide.org"));
     }
     @Test
     public void wordInSearchResult() {
-        new SearchPage().searchFor("propellerads");
-        $("#search-result").shouldHave(text("propellerads"));
+        new SearchPage().searchFor("selenide");
+        $("#search-result").shouldHave(text("selenide"));
     }
     @Test
     public void numberOfResults() {
-        new SearchPage().searchFor("propellerads");
+        new SearchPage().searchFor("selenide");
         $$(".serp-item").shouldHave(sizeGreaterThan(5));
     }
     @Test
     public void visibilityOfSearchResultAside() {
-        new SearchPage().searchFor("propellerads");
+        new SearchPage().searchFor("selenide");
         $("#search-result-aside").shouldBe(visible);
     }
     @Test
     public void textInSearchResultAside() {
-        new SearchPage().searchFor("propellerads");
-        $("#search-result-aside").shouldHave(text("Нашлось 9 тыс. результатов"));
+        new SearchPage().searchFor("selenide");
+        $("#search-result-aside").shouldHave(text("Нашлось 103 млн результатов"));
     }
     @Test
-    public void visibilityOfVKIconInSearchResults() {
-        new SearchPage().searchFor("propellerads");
-        $(By.xpath("//*[@aria-label='Изображение с сайта vk.com']")).scrollIntoView(true).shouldBe(visible);
+    public void visibilityOfGithubLink() {
+        new SearchPage().searchFor("selenide");
+        $$(".serp-item").findBy(text("Github")).shouldBe(visible).shouldHave(text("Concise UI Tests with Java!"));
     }
     @Test
-    public void visibilityOfInstIconInSearchResults() {
-        new SearchPage().searchFor("propellerads");
-        $(By.xpath("//*[@aria-label='Изображение с сайта www.instagram.com']")).scrollIntoView(true).shouldBe(visible);
+    public void visibilityOfTwitterLink() {
+        new SearchPage().searchFor("selenide");
+        $$(".serp-item").findBy(text("Twitter")).shouldBe(visible).shouldHave(text("Selenide is a library for writing concise, readable, boilerplate-free tests in Java using Selenium WebDriver."));
     }
     @Test
-    public void visibilityOfTwitIconInSearchResults() {
-        new SearchPage().searchFor("propellerads");
-        $(By.xpath("//*[@aria-label='Изображение с сайта twitter.com']")).scrollIntoView(true).shouldBe(visible);
+    public void visibilityOfYoutubeLink() {
+        new SearchPage().searchFor("selenide");
+        $$(".serp-item").findBy(text("Введение в Selenide")).shouldBe(visible).shouldHave(text("youtube.com"));
     }
 }
 
